@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.6.0.min.js"></script>
+    <link href="projectW4.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <title>Project Week 4</title>
+</head>
+<body>
+    <!-- roba di background -->
+    <div id="bg2"></div>
+    <div id="bg"></div> 
+    <!-- ----------------- -->
+    <!-- titolo -->
+    <div>
+        <span id="title"> My Media Player</span>
+    </div>
+    <!-- flex div che contiene tutto il resto -->
+    <div class="flex" id="mainFlex">
+        <!-- div che contiene video -->
+        <div class="flex prova">
+            <!-- tit title e subtitle -->
+                <span class="title2">
+                    Video
+                </span>
+                <span class="subtitle">
+                    Seleziona un video per visualizzarlo
+                </span>
+
+            <!-- contiene video -->
+            <video id="myVid" controls src='video/Flowers.mp4' width="400" poster="https://loremflickr.com/g/700/400/london/all"></video>
+            <!-- div in cui appendere gi bottoni x video-->
+            <div class="altri-video-container">
+                <div id="template-bottoni"  class="prova" style="display: none">
+                    <!-- bottone sample che verrà modificato dinamicamente -->
+                <div class="bottoni" onclick="play();" data-src="##src##">##titolo##</div>
+            </div>
+            </div>
+        </div>
+        <div id="divBordo"></div>
+        <!-- div audio player -->
+        <div class="flex prova" id="contAudio">
+            <!-- title e subtitle -->
+            <span class="title3">
+                Audio
+            </span>
+            <span class="subtitle2">
+                Seleziona un audio per ascoltarlo
+            </span>
+            <!-- audio player -->
+            <audio id="myaudio" width="100%" controls src="audio/heartbeat1.mp3" type="audio/mpeg">
+            </audio>
+            <!-- div che contiene altre canzoni -->
+            <div class="altre-canzoni-container">
+                <!-- bottoni per scegliere altre canzoni -->
+                <div id="bottoni-canzoni" class="prova" style="display: none">
+                    <div class="bottoni" onclick="play();" data-src="##source##">##heading##</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <footer>
+        <address>
+            <a href="https://in.linkedin.com › company › epicode-in"><i class="fab fa-facebook-square"></i></a>
+            <a href="https://www.facebook.com/epicodeschool/">
+            <i class="fab fa-google-plus-square"></i></i></a>
+            <a href="https://twitter.com/epicodeschool?lang=en">
+            <i class="fab fa-twitter-square"></i></a>
+            <p class="p_grey piccolo">
+                &copy; Epicode Web Developer school
+            </p>
+        </address>
+    </footer>
+    <script>
+        // funzioni per i video
+        // chiamata ajax
+        $.ajax({
+            method:'get',
+            url:'video.json',
+            dataType:'json',
+            success: function(data){ //avvia funzione sul file json
+                // console.log(data.video); controllo
+
+                var videos = data.video;
+
+                $.each(videos,function(any,some){
+                    var element = $('#template-bottoni div').clone();
+                    var path= 'video/';
+                    $(element)
+                    .attr('data-src',path + some.file)
+                    .text(some.title);
+
+                    var template =$('#template-bottoni').html();
+                    var path = 'video/';
+                    var el = template
+                    .replace('##src##',path + some.file)
+                    .replace('##titolo##',some.title);
+
+                    $('.altri-video-container').append(el)
+                })
+            }
+        });
+        $('.altri-video-container').on('click','div',function(any){
+            any.preventDefault;
+
+            var clicksrc= $(this).attr('data-src');
+            myVid.src = clicksrc;
+            myVid.load();
+        })
+
+        // funzioni per gli audio
+
+        $.ajax({
+            method:'get',
+            url:'audio.json',
+            dataType:'json',
+            success: function(data){
+
+                console.log(data.audio);
+                var songs = data.audio;
+
+                $.each(songs, function(any,some){
+                    // clono il bottone
+                    var a=$('#bottoni-canzoni div').clone();
+                    var percorso = 'audio/';
+
+                    $(a)
+                    .attr('data-src',percorso + some.filo)
+                    .text(some.title);
+
+                    var interfaccia =$('#bottoni-canzoni').html();
+                    var percorso = 'audio/';
+                    var a = interfaccia
+                    .replace('##source##', percorso + some.filo)
+                    .replace('##heading##', some.title);
+
+                    $('.altre-canzoni-container').append(a);
+                })
+            }
+        });
+
+        $('.altre-canzoni-container').on('click','div',function(e){
+            e.preventDefault();
+            var sourceCliccato = $(this).attr('data-src');
+            myaudio.src = sourceCliccato;
+            myaudio.load();
+        })
+    </script>
+
+
+
+    
+</body>
+</html>

@@ -1,0 +1,17 @@
+Il week project è una player multimediale,
+da csviluppare utilizzando jQuery e le api
+di HTML5.
+La pagina web dovrà contenere un player
+audio ed uno video.
+Per ciascun player sarà possibile cliccare
+su specifici bottoni che permettano di 
+cambiare il file in riproduzione.
+
+Avrete a disposizione un file json 
+contenente le informazioni relative a
+vari files video ed audio, sarà qui che 
+dovrete recuperare le informazioni
+necessarie a costruire 
+i suddetti bottoni attraverso una 
+chiamata AJAX. Vi saranno forniti anche 
+i files video/audio
