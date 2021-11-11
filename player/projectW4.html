@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="projectW4.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
@@ -32,7 +32,7 @@
                 </span>
 
             <!-- contiene video -->
-            <video id="myVid" controls src='video/Flowers.mp4' width="400" poster="https://loremflickr.com/g/700/400/london/all"></video>
+            <video id="myVid" controls src='video/slave.mp4' width="400" poster="https://loremflickr.com/g/700/400/london/all"></video>
             <!-- div in cui appendere gi bottoni x video-->
             <div class="altri-video-container">
                 <div id="template-bottoni"  class="prova" style="display: none">
@@ -52,7 +52,7 @@
                 Seleziona un audio per ascoltarlo
             </span>
             <!-- audio player -->
-            <audio id="myaudio" width="100%" controls src="audio/heartbeat1.mp3" type="audio/mpeg">
+            <audio id="myaudio" width="100%" controls src="audio/oasis.mp3" type="audio/mpeg">
             </audio>
             <!-- div che contiene altre canzoni -->
             <div class="altre-canzoni-container">
@@ -85,7 +85,7 @@
             url:'video.json',
             dataType:'json',
             success: function(data){ //avvia funzione sul file json
-                // console.log(data.video); controllo
+                //console.log(data.video);
 
                 var videos = data.video;
 
@@ -96,7 +96,7 @@
                     .attr('data-src',path + some.file)
                     .text(some.title);
 
-                    var template =$('#template-bottoni').html();
+                    var template = $('#template-bottoni').html();
                     var path = 'video/';
                     var el = template
                     .replace('##src##',path + some.file)
