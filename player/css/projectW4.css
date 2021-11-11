@@ -7,7 +7,7 @@ html{
     margin-top:4rem;
     color: rgb(0, 0, 0);
     font-size: 5rem;
-    mix-blend-mode: overlay;
+    mix-blend-mode :overlay;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 body{
@@ -24,9 +24,7 @@ body > #bg{
     position: fixed;
     z-index: -1;
     }
-#title{
-    mix-blend-mode: difference;
-}
+
 footer{
     background-color: rgba(75, 75, 75, 0.5);
     color: black;
@@ -101,6 +99,43 @@ text-align: left;
 }
 #contAudio{
     padding: 1rem;
+}
+.volume{
+    width:95%;
+    height:2px;
+}
+#audioButton{
+    width:90%;
+    display: block;
+    margin:1rem 0rem;
+}
+.icon{
+    cursor:pointer;
+    margin: 1rem 0.4rem;
+}
+.progressBar{
+    width:80%;
+    height:5px;
+    background-color:#000000;
+    margin:auto;
+    border-radius:2px;
+}
+.progress{
+    height:5px;
+    background-color: aliceblue;
+    border-radius:2px;
+    float:left;
+}
+.duration{
+    height:5px;
+    position:absolute;
+    top:0;
+    background-color: blue;
+    border-radius: 2px;
+}
+.tracker{
+    position:relative;
+    width:100%;
 }
 #myVid{
     margin: 1rem 0rem;
